@@ -5,11 +5,11 @@ alias -s {yml,yaml,txt,md,bash}=vim
 alias vi='vim'
 # ls
 alias ls="exa"
+alias l="exa -la --group-directories-first"
 # rm 
 alias rm='rm -iv'
 alias rr='rm -rf'
 # Zsh
-alias reload='clear && source .zshrc'
 alias d='dirs -v | head -10'
 alias 1='cd -'
 alias 2='cd -2'
