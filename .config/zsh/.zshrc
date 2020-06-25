@@ -78,6 +78,10 @@ bindkey -s '^R' 'source $ZDOTDIR/.zshrc && clear \n'
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# syntax highlighting and autosuggestions
-source /Users/will/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~will/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+## syntax highlighting and autosuggestions
+# For MacOS
+[ -f "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+[ -f "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# For Linux
+[ -f "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+[ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
