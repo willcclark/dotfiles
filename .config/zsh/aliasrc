@@ -4,8 +4,8 @@
 alias -s {yml,yaml,txt,md,bash}=vim
 alias vi='vim'
 # ls
-alias ls="exa"
-alias l="exa -la --group-directories-first"
+alias ls="exa -la --group-directories-first"
+alias l.="exa -lad --group-directories-first .*"
 # rm 
 alias rm='rm -iv'
 alias rr='rm -rf'
@@ -27,6 +27,7 @@ conf() {
   typeset -A progs
   progs=(
     vim ~/.vimrc
+    ranger ~/.config/ranger/rc.conf
     zsh $ZDOTDIR/
     tmux ~/.tmux.conf
     alacritty ~/.config/alacritty/alacritty.yml
