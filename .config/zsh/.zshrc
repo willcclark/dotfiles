@@ -1,13 +1,38 @@
-# Lines configured by zsh-newuser-install
+# Path to your oh-my-zsh installation.
+ export ZSH=$HOME/.config/zsh/oh-my-zsh
+ZSH_THEME="robbyrussel"
+
+# Uncomment the following line to use case-sensitive completion.
+CASE_SENSITIVE="true"
+
+# Uncomment the following line to automatically update without prompting.
+DISABLE_UPDATE_PROMPT="true"
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+DISABLE_MAGIC_FUNCTIONS=true
+
+# Uncomment the following line to enable command auto-correction.
+ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Which plugins would you like to load?
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+git
+dnf
+ubuntu
+archlinux
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# Set personal aliases
 HISTFILE=~/.cache/zsh/history
 HISTSIZE=1000
 SAVEHIST=1000
-
-# Basic auto/tab complete:
-autoload -U compinit
-zstyle ':completion:*' menu select
-zmodload zsh/complist
-compinit
 _comp_options+=(globdots)		# Include hidden files.
 
 # miscellaneous options
@@ -17,26 +42,8 @@ setopt autocd autopushd pushdignoredups correct
 bindkey -v
 export KEYTIMEOUT=1
 
-# Prompt config
-PROMPT='%F{green}%1~%f %# '
-autoload -Uz vcs_info
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
-setopt prompt_subst
-RPROMPT+=\$vcs_info_msg_0_
-zstyle ':vcs_info:git:*' formats '%b'
-
-# set PATH
-export PATH=$PATH:$HOME/bin
-
 # set EDITOR
 EDITOR=vim
-
-#  set vim as man pager
-export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
-    vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
-    -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
-    -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
@@ -68,15 +75,19 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
 # aliases, functions, keyboard layout
 source $ZDOTDIR/aliasrc
-source $ZDOTDIR/zkbdrc
 
 ## miscellaneous key bindings
 # open cwd in ranger
 bindkey -s '^o' 'ranger $PWD \n'
 bindkey -s '^R' 'source $ZDOTDIR/.zshrc && clear \n'
+
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
+
+# Use Alt-h to view manpage while editing command
+bindkey -M vicmd '^[h' run-help
+bindkey -M viins '^[h' run-help
 
 ## syntax highlighting and autosuggestions
 # For MacOS
