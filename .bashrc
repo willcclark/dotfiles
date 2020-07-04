@@ -28,3 +28,4 @@ conf[tmux]=.tmux.conf
 conf[alacritty]=.config/alacritty/alacritty.yml
 $EDITOR "${conf[$1]}"
 }
+alias config='/usr/bin/git --git-dir=/Users/will/.cfg/ --work-tree=/Users/will'
