@@ -1,6 +1,7 @@
 # Path to your oh-my-zsh installation.
- export ZSH=$HOME/.config/zsh/oh-my-zsh
-ZSH_THEME="robbyrussel"
+export ZSH=$HOME/.config/zsh/oh-my-zsh
+
+ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
@@ -22,14 +23,20 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 git
-dnf
-ubuntu
-archlinux
+zsh-autosuggestions
+zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
 
-# Set personal aliases
+# Use beam shape cursor on startup.
+echo -ne '\e[5 q'
+# Use beam shape cursor for each new prompt.
+preexec() {
+echo -ne '\e[5 q'
+}
+
+# Lines configured by zsh-newuser-install
 HISTFILE=~/.cache/zsh/history
 HISTSIZE=1000
 SAVEHIST=1000
@@ -37,10 +44,6 @@ _comp_options+=(globdots)		# Include hidden files.
 
 # miscellaneous options
 setopt autocd autopushd pushdignoredups correct
-
-# vi mode
-bindkey -v
-export KEYTIMEOUT=1
 
 # set EDITOR
 EDITOR=vim
@@ -52,34 +55,13 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
-# Change cursor shape for different vi modes.
-function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] ||
-     [[ $1 = 'block' ]]; then
-    echo -ne '\e[1 q'
-  elif [[ ${KEYMAP} == main ]] ||
-       [[ ${KEYMAP} == viins ]] ||
-       [[ ${KEYMAP} = '' ]] ||
-       [[ $1 = 'beam' ]]; then
-    echo -ne '\e[5 q'
-  fi
-}
-zle -N zle-keymap-select
-zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-echo -ne '\e[5 q' # Use beam shape cursor on startup.
-preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-
-# aliases, functions, keyboard layout
-source $ZDOTDIR/aliasrc
-
 ## miscellaneous key bindings
+# Emacs mode
+bindkey -e
 # open cwd in ranger
 bindkey -s '^o' 'ranger $PWD \n'
-bindkey -s '^R' 'source $ZDOTDIR/.zshrc && clear \n'
+# reload zsh
+bindkey -s '^r' 'exec zsh \n'
 
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
@@ -89,13 +71,56 @@ bindkey '^e' edit-command-line
 bindkey -M vicmd '^[h' run-help
 bindkey -M viins '^[h' run-help
 
-## syntax highlighting and autosuggestions
-# For MacOS
-[ -f "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-[ -f "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# For Arch Linux
-[ -f "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-[ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# For Ubuntu/Fedora
-[ -f "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-[ -f "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+## My Personal aliases & Functions
+## Aliases
+# vim
+alias -s {yml,yaml,txt,md,bash}=vim
+alias vi='vim'
+# ls
+alias ls="exa -la --group-directories-first"
+alias l.="exa -lad --group-directories-first .*"
+# rm 
+alias rm='rm -iv'
+alias rr='rm -rf'
+# Zsh
+alias d='dirs -v | head -10'
+alias 1='cd -'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'
+
+## Funtions
+# conf - a simple function by Paul Ouellette to easily open/edit config files
+conf() {
+  typeset -A progs
+  progs=(
+    vim ~/.vimrc
+    ranger ~/.config/ranger/rc.conf
+    zsh $ZDOTDIR/
+    tmux ~/.tmux.conf
+    alacritty ~/.config/alacritty/alacritty.yml
+    # and so on
+  )
+  $EDITOR ${progs[$1]}
+}
+autoload -Uz add-zsh-hook
+
+function xterm_title_precmd () {
+	print -Pn -- '\e]2;%n@%m %~\a'
+	[[ "$TERM" == 'screen'* ]] && print -Pn -- '\e_\005{g}%n\005{-}@\005{m}%m\005{-} \005{B}%~\005{-}\e\\'
+}
+
+function xterm_title_preexec () {
+	print -Pn -- '\e]2;%n@%m %~ %# ' && print -n -- "${(q)1}\a"
+	[[ "$TERM" == 'screen'* ]] && { print -Pn -- '\e_\005{g}%n\005{-}@\005{m}%m\005{-} \005{B}%~\005{-} %# ' && print -n -- "${(q)1}\e\\"; }
+}
+
+if [[ "$TERM" == (alacritty*|gnome*|konsole*|putty*|rxvt*|screen*|tmux*|xterm*) ]]; then
+	add-zsh-hook -Uz precmd xterm_title_precmd
+	add-zsh-hook -Uz preexec xterm_title_preexec
+fi
