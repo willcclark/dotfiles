@@ -17,6 +17,13 @@ unzip
 xclip
 ranger
 neofetch
+tmux
+powerline
+powerline-fonts
+vim-airline
+vim-airline-themes
+lxappearance
+papirus-icon-theme
 firefox
 zsh
 feh
@@ -35,6 +42,7 @@ pulseaudio-lirc
 pulseaudio-zeroconf
 pavucontrol
 fwupd
+rofi
 )
 
 sudo pacman -S ${pacman[@]}
@@ -42,3 +50,15 @@ sudo pacman -S ${pacman[@]}
 systemctl start bluetooth.service
 systemctl enable bluetooth.service
 xdg-user-dirs-update
+
+# dotfiles
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+echo ".cfg" >> .gitignore
+git clone --bare https://github.com/willcclark/dotfiles.git $HOME/.cfg
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+rm .bashrc 
+config checkout
+
+git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.config/zsh/oh-my-zsh
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
