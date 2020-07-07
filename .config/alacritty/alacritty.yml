@@ -6,7 +6,7 @@ window:
   padding:
     x: 5
     y: 5
-  decorations: none
+  decorations: full
 scrolling:
   history: 10000
   multiplier: 3
@@ -18,19 +18,19 @@ shell:
   args:
     - -l
     - -c
-    - "tmux attach"
+    - "export PATH=$PATH:/Users/will/Library/Python/2.7/bin/ && tmux attach || tmux"
 # Font Customization
 font:
   normal:
-    family: DejaVu Sans Mono
+    family: Cascadia Code PL
     style: Regular
   bold:
-    family: DejaVu Sans Mono
+    family: Cascadia Code PL
     style: Bold
   italic:
-    family: DejaVu Sans Mono
+    family: Cascadia Code PL
     style: Italic
-  size: 11
+  size: 13
   offset:
     x: 0
     y: 0
