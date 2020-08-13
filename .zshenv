@@ -1,7 +1,10 @@
-ZDOTDIR=$HOME/.config/zsh
 typeset -U PATH path
-path=("$HOME/.local/bin" "$HOME/bin" "$HOME/.cargo/bin" "$path[@]")
+path=("$HOME/.local/bin" "$HOME/.gem/ruby/2.7.0/bin"  "$path[@]")
 export PATH
-git init --bare $HOME/.cfg 2> /dev/null
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-config config --local status.showUntrackedFiles no
+
+export EDITOR="nvim"
+export BROWSER="brave"
+export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
+
+ZDOTDIR=$HOME/.config/zsh
+
