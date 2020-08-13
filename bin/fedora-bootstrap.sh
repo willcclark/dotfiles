@@ -59,6 +59,12 @@ sudo dnf -y install \*-firmware
 sudo dnf -y copr enable pschyska/alacritty 
 
 ###
+# VSCodium - Free/Libre Open Source Software Binaries of VSCode
+###
+sudo rpm --import https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
+printf "[gitlab.com_paulcarroty_vscodium_repo]\nname=gitlab.com_paulcarroty_vscodium_repo\nbaseurl=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/rpms/\nenabled=1\ngpgcheck=1\nrepo_gpgcheck=1\ngpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg" |sudo tee -a /etc/yum.repos.d/vscodium.repo
+
+###
 # Force update the whole system to the latest and greatest
 ###
 
@@ -72,19 +78,24 @@ sudo dnf distro-sync -y
 ###
 dnf=(
 alacritty # fastest Terminal
-cargo
-cascadia-code-fonts
+codium
+wget 
+curl 
+ruby 
+ruby-devel 
+zsh 
+util-linux-user 
+redhat-rpm-config 
+gcc
+gcc-c++
+make
 exfat-utils
 fuse-exfat
 gnome-extensions-app
-gnome-shell-extension-dash-to-dock.noarch
-gnome-shell-extension-appindicator
+nvim # best text editor
 ranger
-rust
-vim # best text editor
+vim
 zsh # favorite shell
-zsh-autosuggestions
-zsh-syntax-highlighting
 )
 
 flatpak=(
@@ -94,17 +105,20 @@ org.gnome.FeedReader
 org.gnome.Polari
 )
 
-cargo=(
-exa
-starship
-)
-
 ###
 # Install base packages and applications
 ###
 sudo dnf -y install ${dnf[@]}
 flatpak install -y ${flatpak[@]}
-cargo install ${cargo[@]}
+sudo gem install colorls
+
+###
+# Install fonts
+###
+git clone --depth=1 https://github.com/ryanoasis/nerd-fonts ~/.nerd-fonts
+cd .nerd-fonts 
+sudo ./install.sh
+sudo dnf -y install fontawesome-fonts powerline-fonts
 
 ###
 # change default shell to zsh
@@ -133,6 +147,12 @@ git clone --bare https://github.com/willcclark/dotfiles.git $HOME/.cfg
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 rm .bashrc
 config checkout
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+zsh -c "\
+git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
 
 
 # The user needs to reboot to apply all changes.
