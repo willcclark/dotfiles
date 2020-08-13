@@ -108,16 +108,17 @@ zsh # favorite shell
 )
 
 flatpak=(
-org.gnome.Geary
 info.mumble.Mumble
 org.gnome.FeedReader
 org.gnome.Polari
+org.xonotic.Xonotic
 )
 
 ###
 # Install base packages and applications
 ###
 sudo dnf -y install ${dnf[@]}
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install -y ${flatpak[@]}
 sudo gem install colorls
 
