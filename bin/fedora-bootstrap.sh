@@ -47,10 +47,6 @@ sudo dnf -y groupupdate sound-and-video
 # Tainted free is dedicated for FLOSS packages where some usages might be restricted in some countries.
 sudo dnf -y install rpmfusion-free-release-tainted
 sudo dnf -y install libdvdcss
-# Tainted nonfree is dedicated to non-FLOSS packages without a clear redistribution status by the copyright holder. But is allowed as part of hardware inter-operability between operating systems in some countries.
-sudo dnf -y install rpmfusion-nonfree-release-tainted
-sudo dnf -y install \*-firmware
-###
 
 ###
 # Alacritty terminal emulator
