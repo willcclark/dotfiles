@@ -131,7 +131,9 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 echo ".cfg" >> .gitignore
 git clone --bare https://github.com/willcclark/dotfiles.git $HOME/.cfg
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+rm .bashrc
 config checkout
+
 
 # The user needs to reboot to apply all changes.
 echo "Please Reboot" && exit 0
