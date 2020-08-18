@@ -1,3 +1,10 @@
+" -----------------------------------------------------------------------------
+" Name:         init.vim
+" Author:       willcclark <https://github.com/willcclark>
+" Website:
+" https://github.com/willcclark/dotfiles/blob/master/.config/nvim/init.vim
+
+" Vim-Plug: {{{
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
@@ -16,7 +23,9 @@ Plug 'sainnhe/forest-night'
 
 " Initialize plugin system
 call plug#end()
+" }}}
 
+" Colorscheme: {{{
 " Enable true color
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -30,12 +39,13 @@ let g:sonokai_style = 'andromeda'
 let g:sonokai_enable_italic = 1
 let g:sonokai_disable_italic_comment = 1
 colorscheme sonokai
+" }}}
 
-" Usability
+" Interface: {{{
 set mouse=a
 set clipboard+=unnamedplus
 set hlsearch
 set incsearch
-syntax on
 set nu
 set cursorline
+" }}}
