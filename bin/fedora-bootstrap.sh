@@ -1,5 +1,5 @@
-# Fedora Bootstrapping script
 #!/bin/bash
+# Fedora Bootstrapping script
 
 if [ $(id -u) = 0 ]; then
    echo "This script changes your users gsettings and should thus not be run as root!"
