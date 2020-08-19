@@ -4,6 +4,5 @@ export PATH
 
 export EDITOR="nvim"
 export BROWSER="brave"
-export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
-
+export MANPAGER='nvim +Man!'
 export ZDOTDIR=$HOME/.config/zsh
