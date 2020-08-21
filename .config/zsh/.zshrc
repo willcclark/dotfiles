@@ -1,12 +1,7 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.local/share/zsh/oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
+# Set name of the theme to load
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME=spaceship
 
@@ -27,14 +22,17 @@ ZSH_THEME=spaceship
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-bgnotify
-dnf
-fzf
-git
-zsh-autosuggestions
-zsh-syntax-highlighting
+	bgnotify
+	dotbare
+	dnf
+	fzf
+	git
+	zsh-autosuggestions
+	zsh-syntax-highlighting
 )
+
 source $ZSH/oh-my-zsh.sh
+
 # Zsh-syntax-highlighting config
 # {{{ External Plugins
 # Colorls tab completions (https://github.com/athityakumar/colorls)
@@ -79,8 +77,7 @@ source $(dirname $(gem which colorls))/tab_complete.sh
 	
 	# To have commands starting with `rm -rf` in red:
 	ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red')
-	ZSH_HIGHLIGHT_STYLES[cursor]='bg=blue'
-	
+
 	ZSH_HIGHLIGHT_STYLES[root]='bg=red'
 	
 	ZSH_HIGHLIGHT_STYLES[line]='bold'
@@ -117,7 +114,7 @@ conf() {
     vim ~/.config/nvim/init.vim
     ranger ~/.config/ranger/rc.conf
     zsh $ZDOTDIR/.zshrc
-    tmux ~/.tmux.conf
+    tmux ~/.config/tmux/tmux.conf
     alacritty ~/.config/alacritty/alacritty.yml
     # and so on
   )
