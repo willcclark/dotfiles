@@ -15,7 +15,7 @@ alias \
 
 # Colorize commands when possible.
 alias \
-	ls='colorls -lA --sd'
+	ls='colorls -l --sd'
 	grep="grep --color=auto" \
 	diff="diff --color=auto" \
 	ccat="highlight --out-format=ansi"
@@ -35,8 +35,6 @@ alias \
 	xr="sudo xbps-remove -R" \
 	xq="xbps-query" \
 	z="zathura"
-	# Make managing my dotfiles easier
-	alias config='/usr/bin/git --git-dir=/home/will/.cfg/ --work-tree=/home/will'
 
 alias \
 	magit="nvim -c MagitOnly" \
