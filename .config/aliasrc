@@ -28,6 +28,7 @@ alias \
 	YT="youtube-viewer" \
 	sdn="sudo shutdown -h now" \
 	f="$FILE" \
+	db="dotbare"
 	e="$EDITOR" \
 	v="$EDITOR" \
 	p="sudo pacman" \
