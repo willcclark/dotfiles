@@ -14,6 +14,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Use release branch (recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
 "
 " Colorschemes
 Plug 'chriskempson/base16-vim'
@@ -23,20 +26,18 @@ Plug 'sainnhe/sonokai'
 Plug 'sainnhe/gruvbox-material'
 Plug 'rakr/vim-one'
 Plug 'sainnhe/forest-night'
+Plug 'arcticicestudio/nord-vim'
 
 " Initialize plugin system
 call plug#end()
 " }}}
 
-" Colorscheme: {{{
-" Enable true color
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
+let g:airline_powerline_fonts = 1
+
 set t_Co=256
 
+set t_8b=^[[48;2;%lu;%lu;%lum
+set t_8f=^[[38;2;%lu;%lu;%lum
 
 "Credit joshdick
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
@@ -55,11 +56,16 @@ if (empty($TMUX))
   endif
 endif
 
+" Enable true color 启用终端24位色
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 
-set background=dark " for the dark version
+colorscheme nord
+" set background=dark " for the dark version
 " set background=light " for the light version
-let g:one_allow_italics = 1 " I love italic for comments
-colorscheme one
 
 " the configuration options should be placed before `colorscheme sonokai`
 " let g:sonokai_style = 'andromeda'

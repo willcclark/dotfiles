@@ -55,7 +55,7 @@ source $(dirname $(gem which colorls))/tab_complete.sh
 # }}}
 
 # {{{Zsh-syntax-highlighting
-	export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root line)
+	export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern root line)
 	# Declare the variable
 	typeset -A ZSH_HIGHLIGHT_STYLES
 	
@@ -116,9 +116,10 @@ conf() {
     zsh $ZDOTDIR/.zshrc
     tmux ~/.config/tmux/tmux.conf
     alacritty ~/.config/alacritty/alacritty.yml
+    awesome ~/.config/awesome/
     # and so on
   )
-  $EDITOR ${progs[$1]}
+  nvim ${progs[$1]}
 }
 # Automatically change the current working directory after closing ranger
 ranger_cd() {
