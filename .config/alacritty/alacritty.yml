@@ -4,74 +4,27 @@ window:
     columns: 140
     lines: 38
   padding:
-    x: 15
-    y: 15
+    x: 5
+    y: 5
   decorations: none
 
 # Font configuration
 font:
   normal:
+    family: Fira Code Nerd Font
     style: Regular
   bold:
-    family: monospace
+    family: Fira Code Nerd Font
     style: Bold
   italic:
-    family: monospace
+    family: Fira Code Nerd Font
     style: Italic
   size: 11.0
 
-# Colors (Tomorrow Night)
-colors:
-  primary:
-    background: '#1d1f21'
-    foreground: '#c5c8c6'
-    dim_foreground: '#828482'
-    bright_foreground: '#eaeaea'
-  # Colors used for the search bar and match highlighting.
-  search:
-    matches:
-      foreground: '#000000'
-      background: '#ffffff'
-    bar:
-      background: '#c5c8c6'
-      foreground: '#1d1f21'
-
-  # Normal colors
-  normal:
-    black:   '#1d1f21'
-    red:     '#cc6666'
-    green:   '#b5bd68'
-    yellow:  '#f0c674'
-    blue:    '#81a2be'
-    magenta: '#b294bb'
-    cyan:    '#8abeb7'
-    white:   '#c5c8c6'
-
-  # Bright colors
-  bright:
-    black:   '#666666'
-    red:     '#d54e53'
-    green:   '#b9ca4a'
-    yellow:  '#e7c547'
-    blue:    '#7aa6da'
-    magenta: '#c397d8'
-    cyan:    '#70c0b1'
-    white:   '#eaeaea'
-
-  # Dim colors
-  dim:
-    black:   '#131415'
-    red:     '#864343'
-    green:   '#777c44'
-    yellow:  '#9e824c'
-    blue:    '#556a7d'
-    magenta: '#75617b'
-    cyan:    '#5b7d78'
-    white:   '#828482'
 
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 1.0
+background_opacity: 0.9
 
 selection:
   # When set to `true`, selected text will be copied to the primary clipboard.
@@ -83,9 +36,8 @@ cursor:
   #   - ▇ Block
   #   - _ Underline
   #   - | Beam
-  style: Block
+  style: Beam
 
-# Shell
 shell:
   program: /bin/bash
   args:
@@ -93,176 +45,43 @@ shell:
     - -c
     - "tmux attach || tmux"
 
+# Colors (Gruvbox dark)
+colors:
+  # Default colors
+  primary:
+    # hard contrast: background = '#1d2021'
+    background: '#282828'
+    # soft contrast: background = '#32302f'
+    foreground: '#ebdbb2'
+
+  # Normal colors
+  normal:
+    black:   '#282828'
+    red:     '#cc241d'
+    green:   '#98971a'
+    yellow:  '#d79921'
+    blue:    '#458588'
+    magenta: '#b16286'
+    cyan:    '#689d6a'
+    white:   '#a89984'
+
+  # Bright colors
+  bright:
+    black:   '#928374'
+    red:     '#fb4934'
+    green:   '#b8bb26'
+    yellow:  '#fabd2f'
+    blue:    '#83a598'
+    magenta: '#d3869b'
+    cyan:    '#8ec07c'
+    white:   '#ebdbb2'
+
 # Key bindings
 #
 # Key bindings are specified as a list of objects. For example, this is the
 # default paste binding:
 #
 # `- { key: V, mods: Control|Shift, action: Paste }`
-#
-# Each key binding will specify a:
-#
-# - `key`: Identifier of the key pressed
-#
-#    - A-Z
-#    - F1-F24
-#    - Key0-Key9
-#
-#    A full list with available key codes can be found here:
-#    https://docs.rs/glutin/*/glutin/event/enum.VirtualKeyCode.html#variants
-#
-#    Instead of using the name of the keys, the `key` field also supports using
-#    the scancode of the desired key. Scancodes have to be specified as a
-#    decimal number. This command will allow you to display the hex scancodes
-#    for certain keys:
-#
-#       `showkey --scancodes`.
-#
-# Then exactly one of:
-#
-# - `chars`: Send a byte sequence to the running application
-#
-#    The `chars` field writes the specified string to the terminal. This makes
-#    it possible to pass escape sequences. To find escape codes for bindings
-#    like `PageUp` (`"\x1b[5~"`), you can run the command `showkey -a` outside
-#    of tmux. Note that applications use terminfo to map escape sequences back
-#    to keys. It is therefore required to update the terminfo when changing an
-#    escape sequence.
-#
-# - `action`: Execute a predefined action
-#
-#   - ToggleViMode
-#   - SearchForward
-#       Start searching toward the right of the search origin.
-#   - SearchBackward
-#       Start searching toward the left of the search origin.
-#   - Copy
-#   - Paste
-#   - IncreaseFontSize
-#   - DecreaseFontSize
-#   - ResetFontSize
-#   - ScrollPageUp
-#   - ScrollPageDown
-#   - ScrollHalfPageUp
-#   - ScrollHalfPageDown
-#   - ScrollLineUp
-#   - ScrollLineDown
-#   - ScrollToTop
-#   - ScrollToBottom
-#   - ClearHistory
-#       Remove the terminal's scrollback history.
-#   - Hide
-#       Hide the Alacritty window.
-#   - Minimize
-#       Minimize the Alacritty window.
-#   - Quit
-#       Quit Alacritty.
-#   - ToggleFullscreen
-#   - SpawnNewInstance
-#       Spawn a new instance of Alacritty.
-#   - ClearLogNotice
-#       Clear Alacritty's UI warning and error notice.
-#   - ClearSelection
-#       Remove the active selection.
-#   - ReceiveChar
-#   - None
-#
-#   (`mode: Vi` only):
-#   - Open
-#       Open URLs at the cursor location with the launcher configured in `url.launcher`.
-#   - Up
-#       Move the vi mode cursor up by one line.
-#   - Down
-#       Move the vi mode cursor down by one line.
-#   - Left
-#       Move the vi mode cursor left by one character.
-#   - Right
-#       Move the vi mode cursor right by one character.
-#   - First
-#       Move the vi mode cursor to the start of the line, searching across newlines if it is already at the beginning.
-#   - Last
-#       Move the vi mode cursor to the end of the line, searching across newlines if it is already at the end.
-#   - FirstOccupied
-#       Move the vi mode cursor to the first non-empty cell in this line, searching across newlines if it is already at the first one.
-#   - High
-#       Move the vi mode cursor to the top of the screen.
-#   - Middle
-#       Move the vi mode cursor to the middle of the screen.
-#   - Low
-#       Move the vi mode cursor to the bottom of the screen.
-#   - SemanticLeft
-#       Move the vi mode cursor to the start of the previous semantically separated word.
-#   - SemanticRight
-#       Move the vi mode cursor to the start of the next semantically separated word.
-#   - SemanticLeftEnd
-#       Move the vi mode cursor to the end of the previous semantically separated word.
-#   - SemanticRightEnd
-#       Move the vi mode cursor to the end of the next semantically separated word.
-#   - WordLeft
-#       Move the vi mode cursor to the start of the previous whitespace separated word.
-#   - WordRight
-#       Move the vi mode cursor to the start of the next whitespace separated word.
-#   - WordLeftEnd
-#       Move the vi mode cursor to the end of the previous whitespace separated word.
-#   - WordRightEnd
-#       Move the vi mode cursor to the end of the next whitespace separated word.
-#   - Bracket
-#       Move the vi mode cursor to the next character that matches the bracket at the cursor's
-#       current location.
-#   - ToggleNormalSelection
-#   - ToggleLineSelection
-#   - ToggleBlockSelection
-#   - ToggleSemanticSelection
-#       Toggle semantic selection based on `selection.semantic_escape_chars`.
-#   - SearchNext
-#       Jump to the beginning of the next match.
-#   - SearchPrevious
-#       Jump to the beginning of the previous match.
-#   - SearchStart
-#       Jump to the next start of a match to the left of the vi mode cursor.
-#   - SearchEnd
-#       Jump to the next end of a match to the left of the vi mode cursor.
-#
-#   (Linux/BSD only):
-#   - CopySelection
-#       Copy from the selection buffer.
-#   - PasteSelection
-#       Paste from the selection buffer.
-#
-# - `command`: Fork and execute a specified command plus arguments
-#
-#    The `command` field must be a map containing a `program` string and an
-#    `args` array of command line parameter strings. For example:
-#       `{ program: "alacritty", args: ["-e", "vttest"] }`
-#
-# And optionally:
-#
-# - `mods`: Key modifiers to filter binding actions
-#
-#    - Command
-#    - Control
-#    - Option
-#    - Super
-#    - Shift
-#    - Alt
-#
-#    Multiple `mods` can be combined using `|` like this:
-#       `mods: Control|Shift`.
-#    Whitespace and capitalization are relevant and must match the example.
-#
-# - `mode`: Indicate a binding for only specific terminal reported modes
-#
-#    This is mainly used to send applications the correct escape sequences
-#    when in different modes.
-#
-#    - AppCursor
-#    - AppKeypad
-#    - Alt
-#    - Vi
-#
-#    A `~` operator can be used before a mode to apply the binding whenever
-#    the mode is *not* active, e.g. `~Alt`.
-#
 # Bindings are always filled by default, but will be replaced when a new
 # binding with the same triggers is defined. To unset a default binding, it can
 # be mapped to the `ReceiveChar` action. Alternatively, you can use `None` for
@@ -292,6 +111,7 @@ key_bindings:
   - { key: Add,      mods: Control,                 action: IncreaseFontSize }
   - { key: Subtract, mods: Control,                 action: DecreaseFontSize }
   - { key: Minus,    mods: Control,                 action: DecreaseFontSize }
+  - { key: N, mods: Control, action: SpawnNewInstance }
 
 # Tmux integration
   - { key: T,     mods: Control|Shift, chars: "\x01\x63" }
