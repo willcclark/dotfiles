@@ -16,6 +16,8 @@ export BROWSER="firefox"
 export MANPAGER='nvim +Man!'
 export TERM="xterm-256color"
 export FuzzyFinder="fzf"
+export DOTBARE_DIR="$HOME/Projects/dotfiles/"
+export DOTBARE_TREE="$HOME"
 # }}}
 
 # {{{general
@@ -104,11 +106,13 @@ zinit light-mode for \
     zinit-zsh/z-a-bin-gem-node
 
 zinit load denysdovhan/spaceship-prompt
-zinit ice wait'1' lucid; zinit light softmoth/zsh-vim-mode
-zinit ice wait'1' lucid; zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
-zinit ice wait'1' lucid; zinit snippet OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh
-zinit ice wait'1' lucid; zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
-zinit ice wait'1' lucid; zinit snippet OMZ::plugins/dnf/dnf.plugin.zsh
+zinit light kazhala/dotbare
+
+zinit light softmoth/zsh-vim-mode
+zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
+zinit snippet OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh
+zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
+zinit snippet OMZ::plugins/dnf/dnf.plugin.zsh
 # }}}
 
 # {{{Spaceship Prompt
