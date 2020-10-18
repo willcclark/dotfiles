@@ -1,3 +1,7 @@
 [user]
 	email = 67292935+willcclark@users.noreply.github.com will
 	name = willcclark
+
+[credential]
+    helper = store --file $HOME/.local/share/git-credentials
+    helper = cache --timeout 30000
