@@ -106,9 +106,13 @@ zinit light-mode for \
     zinit-zsh/z-a-bin-gem-node
 
 zinit load denysdovhan/spaceship-prompt
-zinit light kazhala/dotbare
 
+zinit light kazhala/dotbare
 zinit light softmoth/zsh-vim-mode
+zinit light zdharma/fast-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+
 zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
 zinit snippet OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh
 zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh

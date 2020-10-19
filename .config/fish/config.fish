@@ -8,10 +8,11 @@ set fish_greeting
 
 #{{{Environment Variables
 set --export EDITOR nvim
-set --export PATH ~/bin ~/.cargo/bin ~/.local/bin /usr/sbin ~/.dotbare $PATH
+set --export PATH ~/bin ~/.cargo/bin ~/.local/bin /usr/sbin ~/.local/share/zinit/plugins/kazhala---dotbare/ $PATH
 set --export BROWSER google-chrome
 set --export MANPAGER nvim +Man!
-set --export DOTBARE_DIR $HOME/.cfg
+set --export DOTBARE_DIR $HOME/Projects/dotfiles
+set --export DOTBARE_TREE $HOME
 #}}}
 
 # Starship prompt <https://starship.rs>
@@ -54,6 +55,7 @@ alias mkd="mkdir -pv"
 alias yt="youtube-dl --add-metadata -i"
 alias yta="yt -x -f bestaudio/best"
 alias ffmpeg="ffmpeg -hide_banner"
+alias db="dotbare"
 
 # Colorize commands when possible.
 alias ls="lsd --long"
