@@ -154,6 +154,7 @@ conf() {
     nvim ~/.config/nvim/init.vim
     ranger ~/.config/ranger/rc.conf
     zsh $ZDOTDIR/.zshrc
+	fish ~/.config/fish/config.fish
     tmux ~/.tmux.conf
     alacritty ~/.config/alacritty/alacritty.yml
     # and so on
