@@ -45,6 +45,7 @@ filetype indent plugin on
 syntax on
 set termguicolors
 colorscheme base16-tomorrow-night
+let g:airline_powerline_fonts = 1
 
 "------------------------------------------------------------
 " Must have options {{{1
