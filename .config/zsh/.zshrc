@@ -3,21 +3,40 @@
 # {{{env
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
-typeset -U PATH path
-path=("$HOME/.local/bin" "$HOME/bin" "$HOME/.gem/ruby/2.7.0/bin" "/var/lib/flatpak/exports/bin" "$path[@]")
-export PATH
 
+typeset -U PATH path
+path=("$HOME/.local/bin" "$HOME/bin" "/usr/local/bin" "/var/lib/flatpak/exports/bin" "/usr/local/opt/ncurses/bin" "$path[@]")
+export PATH
 
 export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
 export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
-export EDITOR=nvim
+
+export EDITOR="nvim"
 export BROWSER="firefox"
 export MANPAGER='nvim +Man!'
 export TERM="xterm-256color"
+
 export FuzzyFinder="fzf"
 export DOTBARE_DIR="$HOME/Projects/dotfiles/"
 export DOTBARE_TREE="$HOME"
+
+# If on macOS, then set additional flags for brew compatibility
+if [ $(uname) = "Darwin" ]; then
+    typeset -U ldflags LDFLAGS
+    ldflags=("-L/usr/local/opt/ncurses/lib" "-L/usr/local/opt/openssl@1.1/lib")
+    export LDFLAGS
+
+    typeset -U cppflags CPPFLAGS
+    cppflags=("-I/usr/local/opt/ncurses/include" "-I/usr/local/opt/openssl@1.1/include")
+    export CPPFLAGS
+
+    export XML_CATALOG_FILES="/usr/local/etc/xml/catalog"
+    
+    typeset -U PATH path
+    path=("$HOME/.local/bin" "$HOME/bin" "/usr/local/bin" "/var/lib/flatpak/exports/bin" "/usr/local/opt/ncurses/bin" "/usr/local/opt/gnu-getopt/bin" "$path[@]")
+    export PATH
+fi
 # }}}
 
 # {{{general
@@ -35,20 +54,20 @@ printf "\e[5 q" > $TTY
 # }}
 
 # {{{completion
-	# Auto load
-	autoload -U +X compinit && compinit
-	autoload -U +X bashcompinit && bashcompinit
-	zmodload zsh/complist
-	_comp_options+=(globdots)		# Include hidden files.
-
-	# Set options
-	setopt MENU_COMPLETE       # press <Tab> one time to select item
-	setopt COMPLETEALIASES     # complete alias
-	setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
-	setopt ALWAYS_TO_END       # Move cursor to the end of a completed word.
-	setopt PATH_DIRS           # Perform path search even on command names with slashes.
-	setopt AUTO_MENU           # Show completion menu on a successive tab press.
-	setopt AUTO_LIST           # Automatically list choices on ambiguous completion.
+    # Auto load
+    autoload -U +X compinit && compinit
+    autoload -U +X bashcompinit && bashcompinit
+    zmodload zsh/complist
+    _comp_options+=(globdots)		# Include hidden files.
+    
+    # Set options
+    setopt MENU_COMPLETE       # press <Tab> one time to select item
+    setopt COMPLETEALIASES     # complete alias
+    setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
+    setopt ALWAYS_TO_END       # Move cursor to the end of a completed word.
+    setopt PATH_DIRS           # Perform path search even on command names with slashes.
+    setopt AUTO_MENU           # Show completion menu on a successive tab press.
+    setopt AUTO_LIST           # Automatically list choices on ambiguous completion.
 
     # Group matches and describe.
     zstyle ':completion:*:*:*:*:*' menu select
@@ -81,21 +100,50 @@ printf "\e[5 q" > $TTY
     zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
     
     # Directories
-	zstyle ':completion:*' special-dirs false
-	export LSCOLORS=ExFxCxdxBxegedabagacad
-	export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-	zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+    zstyle ':completion:*' special-dirs false
+    export LSCOLORS=ExFxCxdxBxegedabagacad
+    export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+    zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # }}}
 
 # {{{Plugins
 # https://github.com/zdharma/zinit
 # https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins-Overview
-declare -A ZINIT  # initial Zinit's hash definition, if configuring before loading Zinit, and then:
-ZINIT[HOME_DIR]=$HOME/.local/share/zinit
 
-source "$HOME/.local/share/zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+# # automated install of zinit plugin manager
+#   # automated install of plugin manager on macOS
+#   if [ $(uname) = "Darwin" ]; then 
+#       [ -d "$HOME/Library/Application Support/zinit" ] ||
+#       mkdir "$HOME/Library/Application Support/zinit";
+#       git clone https://github.com/zdharma/zinit.git "$HOME/Library/Application Support/zinit/bin";
+#       source "$HOME/Library/Application Support/zinit/bin/zinit.zsh";
+#   fi
+#   
+#   # automated install of plugin manager on Linux
+#   if [ $(uname) = "Linux" ]; then
+#       [ -d "${XDG_DATA_HOME:-$HOME/.local/share}/zinit" ] || mkdir ${XDG_DATA_HOME:-$HOME/.local/share}/zinit;
+#       git clone https://git]hub.com/zdharma/zinit.git ${XDG_DATA_HOME:-$HOME/.local/share}/zinit;
+#       source ${XDG_DATA_HOME:-$HOME/.local/share}/zinit/bin/zinit.zsh;
+#   fi
+
+# Load zinit plugins in respective directories whether on Linux or macOS
+  # if On macOS
+  if [ $(uname) = "Darwin" ]; then
+      declare -A ZINIT  # initial Zinit's hash definition, if configuring before loading Zinit, and then:
+      ZINIT[HOME_DIR]="$HOME/Library/Application Support/zinit"
+      source "$HOME/Library/Application Support/zinit/bin/zinit.zsh"
+      autoload -Uz _zinit
+      (( ${+_comps} )) && _comps[zinit]=_zinit
+  fi
+  
+  # if on Linux
+  if [ $(uname) = "Linux" ]; then
+      declare -A ZINIT # initial Zinit's hash definition, if configuring before loading Zinit, and then:
+      ZINIT[HOME_DIR]="${XDG_DATA_HOME:-$HOME/.local/share}/zinit"
+      source ${XDG_DATA_HOME:-$HOME/.local/share}/zinit/bin/zinit.zsh
+      autoload -Uz _zinit
+      (( ${+_comps} )) && _comps[zinit]=_zinit
+  fi
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
@@ -103,17 +151,23 @@ zinit light-mode for \
     zinit-zsh/z-a-rust \
     zinit-zsh/z-a-as-monitor \
     zinit-zsh/z-a-patch-dl \
-    zinit-zsh/z-a-bin-gem-node
+    zinit-zsh/z-a-bin-gem-node \
 
+# load a few plugins without investigating.
+zinit light-mode for \
+    softmoth/zsh-vim-mode \
+    zdharma/fast-syntax-highlighting \
+    zsh-users/zsh-autosuggestions \
+    zsh-users/zsh-history-substring-search \
+    kazhala/dotbare \
+    zsh-users/zsh-completions \
+
+# Load prompt
 zinit load denysdovhan/spaceship-prompt
 
-zinit light kazhala/dotbare
-zinit light softmoth/zsh-vim-mode
-zinit light zdharma/fast-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-
+# Plugins from Oh My Zsh!
 zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
+zinit snippet OMZ::plugins/vscode
 zinit snippet OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh
 zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
 zinit snippet OMZ::plugins/dnf/dnf.plugin.zsh
@@ -154,7 +208,7 @@ conf() {
     nvim ~/.config/nvim/init.vim
     ranger ~/.config/ranger/rc.conf
     zsh $ZDOTDIR/.zshrc
-	fish ~/.config/fish/config.fish
+    fish ~/.config/fish/config.fish
     tmux ~/.tmux.conf
     alacritty ~/.config/alacritty/alacritty.yml
     # and so on
@@ -197,7 +251,7 @@ restart() {
 # FAST_HIGHLIGHT[chroma-git]="chroma/-ogit.ch"
 # }}}
 # {{{fzf
-source /usr/share/fzf/shell/key-bindings.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS="
 -m --height=50%
@@ -226,10 +280,10 @@ bindkey '^ ' autosuggest-accept
 # }}}
 
 # {{{zsh-history-substring-search
-# bindkey '^[[A' history-substring-search-up
-# bindkey '^[[B' history-substring-search-down
-# bindkey -M vicmd 'k' history-substring-search-up
-# bindkey -M vicmd 'j' history-substring-search-down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 # }}}
 # {{{z.lua
 export _ZL_DATA="$HOME/.cache/.zlua"
@@ -242,7 +296,7 @@ alias zf='z -I' # 使用 fzf 对多个结果进行选择
 # {{{Startup
 # zprof  # 取消注释首行和本行，然后执行 time zsh -i -c exit
 # 若直接执行 zprof，将会测试包括 lazyload 在内的所有启动时间
-fortune
+# fortune
 # }}}
 # __        ______ 
 # \ \      / / ___|
@@ -251,3 +305,4 @@ fortune
 #    \_/\_/  \____|
 #
 # Will Clark - https://github.com/willcclark
+zinit light zsh-users/zsh-history-substring-search
