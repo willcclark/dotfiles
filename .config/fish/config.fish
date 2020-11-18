@@ -79,10 +79,10 @@ alias dnfgr="sudo dnf groupremove"          # Remove package group
 alias dnfc="sudo dnf clean all"             # Clean cache
 #}}}
 
-# __        ______ 
+# __        ______
 # \ \      / / ___|
-#  \ \ /\ / / |    
-#   \ V  V /| |___ 
+#  \ \ /\ / / |
+#   \ V  V /| |___
 #    \_/\_/  \____|
 #
 # Will Clark - https://github.com/willcclark
