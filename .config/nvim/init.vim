@@ -17,7 +17,6 @@ set rtp+=/usr/local/opt/fzf " for fzf
 call plug#begin(stdpath('data') . '/plugged')
 " install plugins
 " Use release branch (recommend)
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "
@@ -43,7 +42,7 @@ filetype indent plugin on
 
 " Enable syntax highlighting, other color settings
 syntax on
-set termguicolors
+set termguicolors cursorline
 colorscheme base16-tomorrow-night
 let g:airline_powerline_fonts = 1
 
