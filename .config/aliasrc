@@ -9,13 +9,10 @@ alias \
 	mv="mv -iv" \
 	rm="rm -vI" \
 	mkd="mkdir -pv" \
-	yt="youtube-dl --add-metadata -i" \
-	yta="yt -x -f bestaudio/best" \
-	ffmpeg="ffmpeg -hide_banner"
 
 # Colorize commands when possible.
 alias \
-	ls='lsd --group-dirs --human-readable --long'
+	ls='lsd --group-dirs first --human-readable --long'
 	grep="grep --color=auto" \
 	diff="diff --color=auto" \
 	ccat="highlight --out-format=ansi"
@@ -24,20 +21,12 @@ alias \
 alias \
 	ka="killall" \
 	g="git" \
-	trem="transmission-remote" \
-	YT="youtube-viewer" \
 	sdn="sudo shutdown -h now" \
 	f="$FILE" \
-	db="dotbare"
 	e="$EDITOR" \
 	v="$EDITOR" \
-	p="sudo pacman" \
-	xi="sudo xbps-install" \
-	xr="sudo xbps-remove -R" \
-	xq="xbps-query" \
-	z="zathura"
+	d="sudo dnf" \
 
 alias \
-	magit="nvim -c MagitOnly" \
-	ref="shortcuts >/dev/null; source ${XDG_CONFIG_HOME:-$HOME/.config}/shortcutrc ; source ${XDG_CONFIG_HOME:-$HOME/.config}/zshnameddirrc" \
-	weath="less -S ${XDG_DATA_HOME:-$HOME/.local/share}/weatherreport" \
+        alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME' \
+        alias alias-finder='alias | fzf' \

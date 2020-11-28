@@ -68,6 +68,7 @@ printf "\e[5 q" > $TTY
     setopt PATH_DIRS           # Perform path search even on command names with slashes.
     setopt AUTO_MENU           # Show completion menu on a successive tab press.
     setopt AUTO_LIST           # Automatically list choices on ambiguous completion.
+    setopt NOBEEP              # Disable shell beep
 
     # Group matches and describe.
     zstyle ':completion:*:*:*:*:*' menu select
@@ -159,17 +160,13 @@ zinit light-mode for \
     zdharma/fast-syntax-highlighting \
     zsh-users/zsh-autosuggestions \
     zsh-users/zsh-history-substring-search \
-    kazhala/dotbare \
     zsh-users/zsh-completions \
 
 # Load prompt
 zinit load denysdovhan/spaceship-prompt
 
 # Plugins from Oh My Zsh!
-zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
-zinit snippet OMZ::plugins/vscode
 zinit snippet OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh
-zinit snippet OMZ::plugins/fzf/fzf.plugin.zsh
 zinit snippet OMZ::plugins/dnf/dnf.plugin.zsh
 # }}}
 
@@ -252,6 +249,9 @@ restart() {
 # }}}
 # {{{fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /usr/share/zsh/site-functions/fzf ] && source /usr/share/zsh/site-functions/fzf
+[ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
+
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS="
 -m --height=50%
