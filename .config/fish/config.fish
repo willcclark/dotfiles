@@ -1,5 +1,5 @@
 # Install Oh My Fish, if not installed
-test -d ~/.local/share/omf ;or curl -L https://get.oh-my.fish | fish ;and omf install ;and omf install
+# test -d ~/.local/share/omf ;or curl -L https://get.oh-my.fish | fish
 
 # Aliases
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
