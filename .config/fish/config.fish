@@ -76,4 +76,4 @@ set -g theme_newline_cursor yes
 set -g theme_newline_prompt '$ '
 
 # You must call it on initialization or listening to directory switching won't work
-load_nvm
+test -d $HOME/.config/nvm ;and load_nvm
