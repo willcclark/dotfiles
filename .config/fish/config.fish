@@ -24,6 +24,11 @@ end
 set --global theme_nerd_fonts yes
 set --global theme_display_git_default_branch yes
 set --global theme_color_scheme base16
+set --global theme_title_display_process yes
+set --global theme_display_nvm yes
+set --global theme_display_user yes
+set --global theme_newline_cursor yes
+set -g theme_newline_prompt '$ '
 
 # colors
 set --global fish_color_normal normal
