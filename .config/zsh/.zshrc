@@ -178,6 +178,33 @@ zinit snippet OMZ::plugins/dnf/dnf.plugin.zsh
 	SPACESHIP_VI_MODE_NORMAL="\uf6b5"
 	spaceship_vi_mode_enable
 # }}}
+
+# {{{fast-syntax-highlighting
+# FAST_HIGHLIGHT[chroma-git]="chroma/-ogit.ch"
+# }}}
+
+# {{{fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /usr/share/zsh/site-functions/fzf ] && source /usr/share/zsh/site-functions/fzf
+[ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
+# }}}
+
+# {{{zsh-autosuggestions
+export ZSH_AUTOSUGGEST_USE_ASYNC="true"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244,underline"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244"
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+bindkey '^ ' autosuggest-accept
+# }}}
+
+# {{{zsh-history-substring-search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+# }}}
+
+
 # {{{ Vim-Mode
 	MODE_CURSOR_VIINS="#00ff00 blinking bar"
 	MODE_CURSOR_REPLACE="$MODE_CURSOR_VIINS #ff0000"
@@ -198,7 +225,7 @@ zinit snippet OMZ::plugins/dnf/dnf.plugin.zsh
 [ -f $HOME/.config/aliasrc ] && source $HOME/.config/aliasrc
 
 # {{{some functions
-# conf - a simple function by Paul Ouellette to easily open/edit config files
+# conf - easily open/edit config files
 conf() {
   typeset -A progs
   progs=(
@@ -209,9 +236,10 @@ conf() {
     tmux ~/.tmux.conf
     alacritty ~/.config/alacritty/alacritty.yml
     # and so on
-  )
+    )
   $EDITOR ${progs[$1]}
 }
+
 # Automatically change the current working directory after closing ranger
 ranger_cd() {
     temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
@@ -221,14 +249,6 @@ ranger_cd() {
     fi
     rm -f -- "$temp_file"
 }
-
-# Easily restart zsh
-restart() {
-	cd
-	clear
-	src # Provided by https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/zsh_reload
-}
-
 # }}}
 
 #{{{key bindings
@@ -236,63 +256,11 @@ restart() {
 	bindkey -s '^o' 'ranger_cd\n'
 
 	## miscellaneous key bindings
-	# reload zsh
-	bindkey -s '^[r' 'restart \n'
-
 	# Edit line in vim with ctrl-e:
 	autoload edit-command-line; zle -N edit-command-line
 	bindkey '^e' edit-command-line
 #}}}
 
-# {{{fast-syntax-highlighting
-# FAST_HIGHLIGHT[chroma-git]="chroma/-ogit.ch"
-# }}}
-# {{{fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f /usr/share/zsh/site-functions/fzf ] && source /usr/share/zsh/site-functions/fzf
-[ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
-
-export FZF_DEFAULT_COMMAND='fd --type f'
-export FZF_DEFAULT_OPTS="
--m --height=50%
---layout=reverse
---prompt='➤ '
---ansi
---tabstop=4
---color=dark
---color=bg:-1,hl:2,fg+:4,bg+:-1,hl+:2
---color=info:1,prompt:2,pointer:5,marker:1,spinner:3,header:11
---bind=tab:down,btab:up,ctrl-s:toggle,ctrl-p:toggle-preview
-"
-# }}}
-# {{{fzf-marks
-# Usage: mark fzm C-d
-FZF_MARKS_FILE="$HOME/.cache/fzf-marks"
-FZF_MARKS_COMMAND="fzf"
-FZF_MARKS_COLOR_RHS="249"
-# }}}
-# {{{zsh-autosuggestions
-export ZSH_AUTOSUGGEST_USE_ASYNC="true"
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244,underline"
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244"
-export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-bindkey '^ ' autosuggest-accept
-# }}}
-
-# {{{zsh-history-substring-search
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
-# }}}
-# {{{z.lua
-export _ZL_DATA="$HOME/.cache/.zlua"
-export _ZL_MATCH_MODE=1
-alias zc='z -c' # 严格匹配当前路径的子路径
-alias zz='z -i' # 使用交互式选择模式
-alias zf='z -I' # 使用 fzf 对多个结果进行选择
-# }}}
-# }}}
 # {{{Startup
 # zprof  # 取消注释首行和本行，然后执行 time zsh -i -c exit
 # 若直接执行 zprof，将会测试包括 lazyload 在内的所有启动时间
