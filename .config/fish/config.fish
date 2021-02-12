@@ -16,7 +16,7 @@ set --export VISUAL "code"      # $VISUAL use Visual Studio Code in GUI mode
 # Install Oh My Fish, if not installed
 if test ! -f $HOME/.local/share/omf/init.fish
 	echo "Please install Oh My Fish"
-	sleep 3 && exit 0
+	sleep 3 && exit 1;;
 else
 end
 
