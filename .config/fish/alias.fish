@@ -76,6 +76,3 @@ alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 
 # the terminal rickroll
 alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
-
-# bare git repo alias for dotfiles
-alias config="/usr/bin/git --git-dir=$HOME/.cfg --work-tree=$HOME"
