@@ -4,3 +4,6 @@
 [submodule "/home/will/.local/share/nvim/site/pack/colorschemes/opt/gruvbox"]
 	path = /home/will/.local/share/nvim/site/pack/colorschemes/opt/gruvbox
 	url = https://github.com/morhetz/gruvbox.git
+[submodule ".local/share/nvim/site/pack/colorschemes/opt/gruvbox"]
+	path = .local/share/nvim/site/pack/colorschemes/opt/gruvbox
+	url = https://github.com/morhetz/gruvbox.git
