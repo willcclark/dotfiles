@@ -7,3 +7,6 @@
 [submodule ".local/share/nvim/site/pack/colorschemes/opt/gruvbox"]
 	path = .local/share/nvim/site/pack/colorschemes/opt/gruvbox
 	url = https://github.com/morhetz/gruvbox.git
+[submodule "/home/wc/.local/share/nvim/site/pack/colorschemes/opt/onedark.vim"]
+	path = /home/wc/.local/share/nvim/site/pack/colorschemes/opt/onedark.vim
+	url = https://github.com/joshdick/onedark.vim.git
