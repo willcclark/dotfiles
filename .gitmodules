@@ -1,3 +1,6 @@
 [submodule ".local/share/nvim/site/pack/plugins/opt/vim-airline"]
 	path = .local/share/nvim/site/pack/plugins/opt/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
+[submodule "/home/will/.local/share/nvim/site/pack/colorschemes/opt/gruvbox"]
+	path = /home/will/.local/share/nvim/site/pack/colorschemes/opt/gruvbox
+	url = https://github.com/morhetz/gruvbox.git
