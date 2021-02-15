@@ -11,6 +11,7 @@
 " NeoVim/Vim native plugin management
 " All plugins, colorschemes are loaded from $XDG_DATA_HOME/nvim/site/pack/{colors,plugins}/opt
 packadd! gruvbox
+packadd! onedark.vim
 packadd! vim-airline
 
 " These options and commands enable some very useful features in Vim, that
@@ -29,8 +30,7 @@ filetype indent plugin on
 syntax on
 set cursorline termguicolors
 
-set background=dark
-colorscheme gruvbox
+colorscheme onedark
 let g:gruvbox_italic= '1'
 let g:gruvbox_italicize_comments= '1'
 let g:gruvbox_contrast_dark = 'medium'

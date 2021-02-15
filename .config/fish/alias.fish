@@ -32,7 +32,6 @@ alias open='xdg-open'
 alias oo='xdg-open .'
 alias o="xdg-open"
 
-### ALIASES ###
 # Use neovim for vim if present.
 alias vim="nvim"
 
