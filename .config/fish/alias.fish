@@ -52,7 +52,7 @@ alias pf="poweroff ; or sudo poweroff"
 alias rb="reboot ; or sudo reboot"
 alias e="$EDITOR"
 alias v="$EDITOR"
-alias d="sudo dnf"
+alias d="sudo dnf -y"
 
 # navigation
 alias ..='cd ..' 

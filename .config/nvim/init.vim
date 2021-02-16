@@ -12,6 +12,7 @@
 " All plugins, colorschemes are loaded from $XDG_DATA_HOME/nvim/site/pack/{colors,plugins}/opt
 packadd! gruvbox
 packadd! onedark.vim
+packadd! base16-vim
 packadd! vim-airline
 
 " These options and commands enable some very useful features in Vim, that
@@ -31,9 +32,6 @@ syntax on
 set cursorline termguicolors
 
 colorscheme onedark
-let g:gruvbox_italic= '1'
-let g:gruvbox_italicize_comments= '1'
-let g:gruvbox_contrast_dark = 'medium'
 
 let g:airline_powerline_fonts = 1
 
@@ -108,7 +106,7 @@ set nostartofline
 
 " Display the cursor position on the last line of the screen or in the status
 " line of a window
-set ruler
+set noruler
 
 " Always display the status line, even if only one window is displayed
 set laststatus=2
