@@ -1,0 +1,7 @@
+complete --command conf --exclusive --condition __fish_use_subcommand --arguments alacritty     --description "Open Alacritty config"
+complete --command conf --exclusive --condition __fish_use_subcommand --arguments fish          --description "Open Fish config"
+complete --command conf --exclusive --condition __fish_use_subcommand --arguments git           --description "Open Git config"
+complete --command conf --exclusive --condition __fish_use_subcommand --arguments i3            --description "Open i3 config"
+complete --command conf --exclusive --condition __fish_use_subcommand --arguments nvim          --description "Open NeoVim config"
+complete --command conf --exclusive --condition __fish_use_subcommand --arguments ranger        --description "Opne Ranger config"
+complete --command conf --exclusive --condition __fish_use_subcommand --arguments vim           --description "Open Vim (NeoVim) config"

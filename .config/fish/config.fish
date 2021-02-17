@@ -1,3 +1,5 @@
+# Disable greeting 
+set fish_greeting
 # Add other directories to $PATH
 set --export --global PATH $HOME/.local/bin /usr/local/bin /usr/sbin /var/lib/flatpak/exports/bin $PATH
 
@@ -5,6 +7,12 @@ set --export --global PATH $HOME/.local/bin /usr/local/bin /usr/sbin /var/lib/fl
 set --export --global XDG_CONFIG_HOME "$HOME/.config"
 set --export --global XDG_DATA_HOME "$HOME/.local/share"
 set --export --global XDG_CACHE_HOME "$HOME/.cache"
+
+set --export --global GEM_HOME "$XDG_DATA_HOME"/gem
+set --export --global GEM_SPEC_CACHE "$XDG_CACHE_HOME"/gem
+set --export --global BUNDLE_USER_CONFIG "$XDG_CONFIG_HOME"/bundle 
+set --export --global BUNDLE_USER_CACHE "$XDG_CACHE_HOME"/bundle 
+set --export --global BUNDLE_USER_PLUGIN "$XDG_DATA_HOME"/bundle
 
 # Default programs:
 set --export --global EDITOR "nvim"      # $EDITOR use Emacs in terminal
@@ -14,6 +22,12 @@ set --export --global MANPAGER 'nvim +Man!'
 # Setup Starship
 starship init fish | source
 
+# Install the Fisher plugin manager (if not installed)
+# https://github.com/jorgebucaran/fisher
+if test ! -f $__fish_config_dir/functions/fisher.fish
+    curl -sL https://git.io/fisher | source && fisher update
+end
+    
 
 # Fish syntax highlighting
 set -g fish_color_autosuggestion '555'  'brblack'

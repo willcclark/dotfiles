@@ -14,6 +14,7 @@ packadd! gruvbox
 packadd! onedark.vim
 packadd! base16-vim
 packadd! vim-airline
+packadd! vim-airline-themes
 
 " These options and commands enable some very useful features in Vim, that
 " no user should have to live without.
@@ -31,7 +32,7 @@ filetype indent plugin on
 syntax on
 set cursorline termguicolors
 
-colorscheme onedark
+colorscheme base16-materia
 
 let g:airline_powerline_fonts = 1
 
