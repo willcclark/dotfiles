@@ -3,7 +3,6 @@
 	name = willcclark
 
 [credential]
-    helper = store --file $HOME/.local/share/git-credentials
     helper = cache --timeout 30000
 [core]
 	editor = nano

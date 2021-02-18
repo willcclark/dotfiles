@@ -12,6 +12,7 @@
 " All plugins, colorschemes are loaded from $XDG_DATA_HOME/nvim/site/pack/{colors,plugins}/opt
 packadd! onedark.vim
 packadd! vim-airline
+packadd! gruvbox
 " Plugins Settings
 let g:airline_powerline_fonts = 1
 
@@ -31,7 +32,7 @@ filetype indent plugin on
 syntax on
 set cursorline termguicolors
 
-colorscheme onedark
+colorscheme gruvbox
 "------------------------------------------------------------
 " Must have options {{{1
 "
