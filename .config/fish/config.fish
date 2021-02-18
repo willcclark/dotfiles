@@ -20,13 +20,13 @@ set --export --global VISUAL "code"      # $VISUAL use Visual Studio Code in GUI
 set --export --global MANPAGER 'nvim +Man!'
 
 # Setup Starship
-starship init fish | source
+# starship init fish | source
 
 # Install the Fisher plugin manager (if not installed)
 # https://github.com/jorgebucaran/fisher
-if test ! -f $__fish_config_dir/functions/fisher.fish
-    curl -sL https://git.io/fisher | source && fisher update
-end
+# if test ! -f $__fish_config_dir/functions/fisher.fish
+#     curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+# end
     
 
 # Fish syntax highlighting
@@ -61,5 +61,12 @@ else
   bind '$' __history_previous_command_arguments
 end
 
+function hybrid_bindings --description "Vi-style bindings that inherit emacs-style bindings in all modes"
+    for mode in default insert visual
+        fish_default_key_bindings -M $mode
+    end
+    fish_vi_key_bindings --no-erase
+end
+set -g fish_key_bindings hybrid_bindings
 # Aliases
 source ~/.config/fish/alias.fish

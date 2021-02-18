@@ -10,11 +10,10 @@
 
 " NeoVim/Vim native plugin management
 " All plugins, colorschemes are loaded from $XDG_DATA_HOME/nvim/site/pack/{colors,plugins}/opt
-packadd! gruvbox
 packadd! onedark.vim
-packadd! base16-vim
 packadd! vim-airline
-packadd! vim-airline-themes
+" Plugins Settings
+let g:airline_powerline_fonts = 1
 
 " These options and commands enable some very useful features in Vim, that
 " no user should have to live without.
@@ -32,10 +31,7 @@ filetype indent plugin on
 syntax on
 set cursorline termguicolors
 
-colorscheme base16-materia
-
-let g:airline_powerline_fonts = 1
-
+colorscheme onedark
 "------------------------------------------------------------
 " Must have options {{{1
 "
