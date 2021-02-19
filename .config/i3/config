@@ -50,9 +50,11 @@ hide_edge_borders smart
     # start a terminal
     bindsym $mod+Return exec $term
     # firefox
-    bindsym $mod+F1 exec brave-browser
-    # neovim
-    bindsym $mod+F2 exec alacritty --title NeoVim --command nvim
+    bindsym $mod+F1 exec firefox
+    # Brave (for school)
+    bindsym $mod+Shift+F1 exec brave-browser
+    # Nautilus
+    bindsym $mod+F2 exec nautilus
     # ranger
     bindsym $mod+F3 exec $term --title rangerchooser -e rangerchooser
     # calculator
@@ -69,7 +71,7 @@ hide_edge_borders smart
     bindsym $mod+space exec --no-startup-id $menu
     bindsym Mod1+space exec --no-startup-id i3-dmenu-desktop
     # Lock i3
-    bindsym $mod+Escape exec i3lock --nofork --ignore-empty-password -c 323232
+    bindsym $mod+Escape exec loginctl lock-session || i3lock --nofork --ignore-empty-password -c 323232
 
     # Use pactl to adjust volume in PulseAudio.
     set $refresh_i3status killall -SIGUSR1 i3status
@@ -141,10 +143,10 @@ hide_edge_borders smart
 #
     # Define names for default workspaces for which we configure key bindings later on.
     # We use variables to avoid repeating the names in multiple places.
-    set $ws1 "1: www"
-    set $ws2 "2: edit"
-    set $ws3 "3: file"
-    set $ws4 "4: note"
+    set $ws1 "1: web"
+    set $ws2 "2: file"
+    set $ws3 "3: note"
+    set $ws4 "4"
     set $ws5 "5"
     set $ws6 "6"
     set $ws7 "7"
@@ -180,9 +182,10 @@ hide_edge_borders smart
 
     # Assign windows to workspace
     assign [class="Brave-browser"] $ws1
-    assign [title="NeoVim" ] $ws2
-    assign [class="Org.gnome.Nautilus" ] $ws3
-    assign [class="Simplenote" ] $ws4
+    assign [class="firefox" ] $ws1
+    assign [class="brave-browser" ] $ws1
+    assign [class="Org.gnome.Nautilus" ] $ws2
+    assign [class="Simplenote" ] $ws3
 
 # 
 # Resizing
@@ -219,7 +222,14 @@ bar {
     position top
     colors {
         background #323232
+        statusline #ffffff
+        separator #666666
+
+        focused_workspace  #4c7899 #285577 #ffffff
+        active_workspace   #333333 #5f676a #ffffff
         inactive_workspace #323232 #323232 #888888
+        urgent_workspace   #2f343a #900000 #ffffff
+        binding_mode       #2f343a #900000 #ffffff
     }
 }
 
@@ -230,7 +240,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --ignore-
 # set background color - same as i3bar
 exec --no-startup-id xsetroot -solid "#323232"
 
+exec --no-startup-id firefox
 exec --no-startup-id brave-browser
-exec --no-startup-id alacritty --title NeoVim --command nvim
 exec --no-startup-id nautilus
 exec --no-startup-id simplenote
