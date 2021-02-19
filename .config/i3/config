@@ -85,9 +85,9 @@ hide_edge_borders smart
     bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 
     # Screenshots
-    bindsym Print exec gnome-screenshot && notify-send "screenshot taken"
-    bindsym Mod1+Print exec gnome-screenshot -w && notify-send "screenshot taken"
-    bindsym Shift+Print exec gnome-screenshot -a && notify-send "screenshot taken"
+    bindsym --release Print exec gnome-screenshot && notify-send "screenshot taken"
+    bindsym --release Mod1+Print exec gnome-screenshot -w && notify-send "screenshot taken"
+    bindsym --release Shift+Print exec gnome-screenshot -a && notify-send "screenshot taken"
 # 
 # Moving around
 #

@@ -83,16 +83,17 @@ conf() {
     esac
 }
 
-# d - shorten common dnf commands
+# d - shorten and conditionally upgrade privilegs to common dnf commands
+# ex: "d in firefox" - same as "sudo dnf -y firefox"
 d() {
     case $1 in
-        install ) sudo dnf install $1 ;;
-        remove ) sudo dnf remove $1 ;;
-        upgrade ) sudo dnf upgrade $1 ;;
-        search ) dnf search $1 ;;
-        in ) sudo dnf install $1 ;;
-        re ) sudo dnf remove $1 ;;
-        up ) sudo dnf upgrade $1 ;;
-        * ) sudo dnf $1 ;;
+        install ) sudo dnf -y install $2 ;;
+        remove ) sudo dnf -y remove $2 ;;
+        upgrade ) sudo dnf -y upgrade $2 ;;
+        search ) dnf search $2 ;;
+        in ) sudo dnf -y install $2 ;;
+        rm ) sudo dnf -y remove $2 ;;
+        up ) sudo dnf -y upgrade $2 ;;
+        * ) dnf $2 ;;
     esac
 }
