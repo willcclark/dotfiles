@@ -31,7 +31,10 @@ xinput set-prop "$DEVICE" "libinput Disable While Typing Enabled" 0
 
 setxkbmap -option caps:escape
 
-[[ -f ~/.Xresources ]] && xrdb -merge -I $HOME ~/.Xresources
+if [[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/Xresources" ]]; then
+    xrdb -merge -I ${XDG_CONFIG_HOME:-$HOME/.config}/x11/Xresources
+fi
+
 systemctl --user import-environment DISPLAY
 
 exec i3

@@ -6,8 +6,7 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
-then
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 export PATH
@@ -15,8 +14,8 @@ export PATH
 # Setup Starship prompt, if supported and installed
 case "$TERM" in
 xterm*|rxvt*|alacritty)
-    if [[ -x "$(command -v starship)" ]]
-    then eval "$(starship init bash)"
+    if [[ -x "$(command -v starship)" ]]; then 
+        eval "$(starship init bash)"
     else
         PS1="\[$(tput setaf 10)\]$PS1\[$(tput sgr0)\]"
     fi ;;
@@ -24,8 +23,7 @@ xterm*|rxvt*|alacritty)
 esac
 
 # Fzf keybindings
-if [[ -f /usr/share/fzf/shell/key-bindings.bash ]]
-then 
+if [[ -f /usr/share/fzf/shell/key-bindings.bash ]]; then 
     source /usr/share/fzf/shell/key-bindings.bash
 fi
 
@@ -33,7 +31,9 @@ fi
 shopt -s autocd cdspell
 
 # User specific aliases and functions
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
+if [[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ]]; then
+        source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
+fi
 
 conf() {
     case $1 in
