@@ -1,0 +1,62 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Setup Starship prompt, if supported and installed
+case "$TERM" in
+xterm*|rxvt*|alacritty)
+    if [[ -x "$(command -v starship)" ]]
+    then eval "$(starship init bash)"
+    else
+        PS1="\[$(tput setaf 10)\]$PS1\[$(tput sgr0)\]"
+    fi ;;
+*) ;;
+esac
+
+# Fzf keybindings
+if [[ -f /usr/share/fzf/shell/key-bindings.bash ]]
+then 
+    source /usr/share/fzf/shell/key-bindings.bash
+fi
+
+# Misc shell opts
+shopt -s autocd cdspell
+
+# User specific aliases and functions
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
+
+conf() {
+    case $1 in
+        alacritty ) $EDITOR ~/.config/alacritty/alacritty.yml ;;
+        bash ) $EDITOR "${XDG_CONFIG_HOME:-$HOME/.config}/shell/bashrc" ;;
+        git ) $EDITOR ~/.config/git/config ;;
+        i3 ) $EDITOR ~/.config/i3/config ;;
+        * ) ranger --cmd='set hidden_filter ^\.git$|^\.gitignore$' ~/dotfiles ;;
+    esac
+}
+
+# d - shorten and conditionally upgrade privilegs to common dnf commands
+# ex: "d in firefox" - same as "sudo dnf -y firefox"
+d() {
+    case $1 in
+        install ) sudo dnf -y install $2 ;;
+        remove ) sudo dnf -y remove $2 ;;
+        upgrade ) sudo dnf -y upgrade $2 ;;
+        search ) dnf search $2 ;;
+        in ) sudo dnf -y install $2 ;;
+        se ) dnf search $2 ;;
+        rm ) sudo dnf -y remove $2 ;;
+        up ) sudo dnf -y upgrade $2 ;;
+        * ) dnf $2 ;;
+    esac
+}
