@@ -241,7 +241,7 @@ bar {
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --ignore-empty-password -c 323232
 # set background color - same as i3bar
 # exec --no-startup-id xsetroot -solid "#323232"
-exec --no-startup-id feh --no-fehbg --bg-scale /home/wc/Pictures/Wallpapers/Pop!_OS/kate-hazen-fractal-mountains.png
+exec --no-startup-id feh --no-fehbg --bg-scale ~/.local/share/backgrounds/kate-hazen-fractal-mountains.png
 
 exec --no-startup-id firefox
 exec --no-startup-id brave-browser
