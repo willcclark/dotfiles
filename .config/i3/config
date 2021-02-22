@@ -70,8 +70,8 @@ hide_edge_borders smart
     # kill focused window
     bindsym $mod+Shift+q kill
     # start dmenu (a program launcher)
-    bindsym $mod+space exec --no-startup-id $menu
-    bindsym Mod1+space exec --no-startup-id i3-dmenu-desktop
+    bindsym Mod1+space exec --no-startup-id $menu
+    bindsym Mod1+Shift+space exec --no-startup-id i3-dmenu-desktop
     # Lock i3
     bindsym $mod+Escape exec loginctl lock-session || i3lock --nofork --ignore-empty-password -c 323232
 
@@ -219,7 +219,8 @@ hide_edge_borders smart
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    status_command i3status
+    # status_command i3status-rs ~/.config/i3/status.toml
+    status_command i3status -c ~/.config/i3/status.cfg
     font pango:FiraCode Nerd Font 10
     position top
     colors {
