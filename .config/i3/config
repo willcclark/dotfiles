@@ -13,7 +13,7 @@ set $right l
 # Terminal
 set $term alacritty
 # Application launcher
-set $menu dmenu_run
+set $menu dmenu_run -i
 
 font pango:FiraCode Nerd Font 8
 
@@ -28,6 +28,8 @@ for_window [class="Eog" ] floating enable
 for_window [class="Gnome-calculator"] floating enable
 for_window [class="Gnome-font-viewer"] floating enable
 for_window [class="Gnome-control-center"] floating enable
+for_window [class="Org.gnome.clocks" ] floating enable
+for_window [class="Org.gnome.Characters" ] floating enable
 for_window [class="Gnome-system-monitor"] floating enable
 for_window [class="Gnome-contacts"] floating enable
 for_window [class="File-roller"] floating enable
@@ -60,9 +62,9 @@ hide_edge_borders smart
     # calculator
     bindsym $mod+F4 exec gnome-calculator
     # reload the configuration file
-    bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+c exec i3 -C > ~/.cache/i3_config_errors.log && i3 reload || i3-nagbar -m 'You have an error in your i3 config file!' -b 'edit config' 'editor ~/.config/i3/config' -b 'show errors' 'less < ~/.cache/i3_config_errors.log'
     # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-    bindsym $mod+Shift+r restart
+    bindsym $mod+Shift+r exec i3 -C > ~/.cache/i3_config_errors.log && i3 restart || i3-nagbar -m 'You have an error in your i3 config file!' -b 'edit config' 'editor ~/.config/i3/config' -b 'show errors' 'less < ~/.cache/i3_config_errors.log'
     # exit i3 (logs you out of your X session)
     bindsym $mod+Shift+e exit
     # kill focused window
@@ -238,9 +240,11 @@ bar {
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --ignore-empty-password -c 323232
 # set background color - same as i3bar
-exec --no-startup-id xsetroot -solid "#323232"
+# exec --no-startup-id xsetroot -solid "#323232"
+exec --no-startup-id feh --no-fehbg --bg-scale /home/wc/Pictures/Wallpapers/Pop!_OS/kate-hazen-fractal-mountains.png
 
 exec --no-startup-id firefox
 exec --no-startup-id brave-browser
 exec --no-startup-id nautilus
 exec --no-startup-id simplenote
+exec --no-startup-id picom

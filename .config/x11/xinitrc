@@ -29,8 +29,6 @@ xinput set-prop "$DEVICE" "libinput Tapping Enabled" 1
 xinput set-prop "$DEVICE" "libinput Natural Scrolling Enabled" 1
 xinput set-prop "$DEVICE" "libinput Disable While Typing Enabled" 0
 
-setxkbmap -option caps:escape
-
 if [[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/x11/Xresources" ]]; then
     xrdb -merge -I ${XDG_CONFIG_HOME:-$HOME/.config}/x11/Xresources
 fi

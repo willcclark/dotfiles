@@ -1,18 +1,37 @@
-#!/bin/bash
-# Default programs:
-if [[ -x "$(command -v nvim)" ]]
-then 
-    alias vim="nvim" vimdiff="nvim -d"
-    alias vim="nvim"
-    alias vi="nvim"
-fi
+#!/bin/sh
 
-alias v="$EDITOR"
-alias e="$EDITOR"
-alias oo="xdg-open ."
-alias o="xdg-open"
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias hdmi="xrandr --output HDMI2 --auto --left-of eDP1"
+# Use neovim for vim if present.
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+
+# Verbosity and settings that you pretty much just always are going to want.
+alias \
+	cp="cp -iv" \
+	mv="mv -iv" \
+	rm="trash -vi" \
+	mkd="mkdir -pv" \
+
+# Colorize commands when possible.
+alias \
+        ls="lsd --group-dirs first --classify --color=auto" \
+        la="lsd --almost-all --color=auto --human-readable --classify --group-dirs first -l" \
+        l="ls -l --color=auto --human-readable --classify --group-dirs first -l" \
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \
+
+# These common commands are just too long! Abbreviate them.
+alias \
+	ka="killall" \
+	g="git" \
+	f="$FILE" \
+	e="$EDITOR" \
+        o="xdg-open" \
+        oo="xdg-open ." \
+	v="$EDITOR" \
+
+alias \
+        config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME' \
+        hdmi="xrandr --output HDMI2 --auto --left-of eDP1" \
+	sdn="sudo shutdown -h now" \
 
 # https://github.com/jackpot51/dotfiles/blob/master/bash/.bash_aliases
 if command -v flatpak > /dev/null

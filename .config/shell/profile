@@ -1,5 +1,4 @@
-# .bash_profile
-
+#!/bin/bash
 # Get the aliases and functions
 # Use XDG spec for bashrc
 if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/bashrc" ]; then
@@ -16,8 +15,9 @@ else
     export EDITOR="vi"
 fi
 
-export TERMINAL="alacritty"
 export BROWSER="brave"
+export TERMINAL="alacritty"
+export MANPAGER='nvim +Man!'
 
 # Clean up ~/
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -36,14 +36,6 @@ export BUNDLE_USER_CACHE='"$XDG_CACHE_HOME"/bundle'
 export BUNDLE_USER_PLUGIN='"$XDG_DATA_HOME"/bundle'
 
 # Other program settings:
-export LESS=-R
-export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"
-export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"
-export LESS_TERMCAP_me="$(printf '%b' '[0m')"
-export LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')"
-export LESS_TERMCAP_se="$(printf '%b' '[0m')"
-export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
-export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 export MOZ_USE_XINPUT2="1"		# Mozilla smooth scrolling/touchpads.
 
 # Autostart i3 or Gnome (Wayland)
@@ -52,4 +44,7 @@ if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
 fi
 if [[ -z $DISPLAY && $(tty) == /dev/tty2 && $XDG_SESSION_TYPE == tty ]]; then
   MOZ_ENABLE_WAYLAND=1 QT_QPA_PLATFORM=wayland XDG_SESSION_TYPE=wayland exec dbus-run-session gnome-session
+fi
+if [[ -z $DISPLAY && $(tty) == /dev/tty3 && $XDG_SESSION_TYPE == tty ]]; then
+    exec tmux
 fi
