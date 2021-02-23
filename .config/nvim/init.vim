@@ -169,3 +169,4 @@ map Y y$
 nnoremap <C-L> :nohl<CR><C-L>
 
 "------------------------------------------------------------
+hi Normal guibg=NONE ctermbg=NONE

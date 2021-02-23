@@ -24,6 +24,7 @@ alias \
 	g="git" \
 	f="$FILE" \
 	e="$EDITOR" \
+        :q="exit"
         o="xdg-open" \
         oo="xdg-open ." \
 	v="$EDITOR" \

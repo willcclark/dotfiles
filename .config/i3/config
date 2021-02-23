@@ -13,7 +13,7 @@ set $right l
 # Terminal
 set $term alacritty
 # Application launcher
-set $menu dmenu_run -i
+set $menu dmenu_run_history -i
 
 font pango:FiraCode Nerd Font 8
 
@@ -25,6 +25,7 @@ workspace_auto_back_and_forth yes
 # floating windows
 for_window [class="Cheese" ] floating enable
 for_window [class="Eog" ] floating enable
+for_window [class="Fragments" ] floating enable
 for_window [class="Gnome-calculator"] floating enable
 for_window [class="Gnome-font-viewer"] floating enable
 for_window [class="Gnome-control-center"] floating enable
@@ -219,7 +220,6 @@ hide_edge_borders smart
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    # status_command i3status-rs ~/.config/i3/status.toml
     status_command i3status -c ~/.config/i3/status.cfg
     font pango:FiraCode Nerd Font 10
     position top
