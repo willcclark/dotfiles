@@ -1,0 +1,7 @@
+#!/bin/sh
+swaymsg -- workspace --no-auto-back-and-forth 1
+swaymsg exec firefox
+swaymsg exec google-chrome
+swaymsg workspace 2
+swaymsg exec 'alacritty --working-directory ~/Documents/notes'
+swaymsg -- workspace --no-auto-back-and-forth 1
