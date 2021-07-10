@@ -20,7 +20,7 @@ set $term alacritty
 # on the original workspace that the command was run on.
 set $menu dmenu_path | dmenu -i -p "Run: " -l 10 | xargs swaymsg exec --
 
-font pango:IPAGothic 10, DejaVu Sans Mono 9
+font pango DejaVu Sans Mono 9
 
 # Tabbed layout by default
 workspace_layout tabbed
@@ -118,17 +118,22 @@ exec swayidle -w \
     bindsym Mod1+Print exec grimshot save active
 
     # Volume controls
-    bindsym Mod1+F1 exec amixer set Master toggle
-    bindsym Mod1+F2 exec amixer set Master 5%-
-    bindsym Mod1+F3 exec amixer set Master 5%+
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-    bindsym XF86AudioRaiseVolume exec amixer sset Master 5%+
-    bindsym XF86AudioLowerVolume exec amixer sset Master 5%-
-    bindsym XF86AudioMute exec amixer sset Master toggle
+    bindsym Mod1+F1 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    bindsym Mod1+F2 exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+    bindsym Mod1+F3 exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym Mod1+F4 exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && notify-send "🎤 Mic Toggle 🎤"
 
     # Brightness Control
     bindsym XF86MonBrightnessDown exec light -U 10
     bindsym XF86MonBrightnessUp exec light -A 10
+
+    bindsym Mod1+F5 exec light -U 10
+    bindsym Mod1+F6 exec light -A 10
 
     # Lock the screen
     bindsym $mod+Escape exec swaylock -f -e -c 1d1f21
