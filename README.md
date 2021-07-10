@@ -1,4 +1,4 @@
-# "Dotfiles for" @willcclark
+# "Dotfiles for" [@willcclark](https://github.com/willcclark)
 
 ### Run the following commands to restore the configuration
 
