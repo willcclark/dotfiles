@@ -1,0 +1,38 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+window:
+  padding:
+    x: 10
+    y: 10
+  decorations: full
+  dynamic_title: true
+
+scrolling:
+  history: 99999
+
+font:
+  normal:
+    family: monospace
+    style: Regular
+  bold:
+    family: monospace
+    style: Bold
+  italic:
+    family: monospace
+    style: Italic
+  size: 11.0
+
+
+# Colors
+
+# Background opacity
+#background_opacity: 1.0
+
+shell:
+  program: /bin/fish
+  # args:
+  #   - --login
+
+key_bindings:
+  - { key: N, mods: Control|Shift, action: SpawnNewInstance }
+
