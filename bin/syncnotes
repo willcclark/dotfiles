@@ -1,4 +1,5 @@
 #!/bin/sh
+# https://github.com/pauloue/dotfiles/blob/master/bin/syncnotes
 set -e
 cd "$NOTESDIR"
 

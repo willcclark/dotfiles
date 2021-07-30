@@ -1,4 +1,5 @@
 #!/bin/sh
+# https://github.com/pauloue/dotfiles/blob/master/bin/startup
 swaymsg -- workspace --no-auto-back-and-forth 1
 swaymsg exec firefox
 swaymsg exec google-chrome

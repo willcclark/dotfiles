@@ -6,3 +6,5 @@
     helper = cache --timeout 30000
 [core]
 	editor = nano
+[init]
+	defaultBranch = main
