@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -39,7 +39,7 @@ ZSH_CUSTOM=$HOME/.zsh_custom
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	dnf
+	command-not-found
 	git
 	sudo
 	web-search
@@ -53,7 +53,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vi'
 else
-  export EDITOR='nvim'
+  export EDITOR='vim'
 fi
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -63,4 +63,4 @@ fi
 #
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
-alias ohmyzsh="ranger ~/.oh-my-zsh"
+alias ohmyzsh="open ~/.oh-my-zsh"

@@ -17,17 +17,44 @@ scrolling:
   history: 99999
 
 font:
+  size: 14.0
+
+# Colors (Seoul256)
+colors:
+  # Default colors
+  primary:
+    background: '#3a3a3a'
+    foreground: '#d0d0d0'
+
+  # Normal colors
   normal:
-    family: monospace
-    style: Regular
-  bold:
-    family: monospace
-    style: Bold
-  italic:
-    family: monospace
-    style: Italic
-  size: 11.0
+    black:   '#4e4e4e'
+    red:     '#d68787'
+    green:   '#5f865f'
+    yellow:  '#d8af5f'
+    blue:    '#85add4'
+    magenta: '#d7afaf'
+    cyan:    '#87afaf'
+    white:   '#d0d0d0'
+
+  # Bright colors
+  bright:
+    black:   '#626262'
+    red:     '#d75f87'
+    green:   '#87af87'
+    yellow:  '#ffd787'
+    blue:    '#add4fb'
+    magenta: '#ffafaf'
+    cyan:    '#87d7d7'
+    white:   '#e4e4e4'
 
 key_bindings:
-  - { key: N, mods: Control|Shift, action: SpawnNewInstance }
-
+  - { key: Comma,     mods: Command,      command:
+      {program: "sh", args: ["-c", "open ~/.config/alacritty/alacritty.yml"]}     }
+  - { key: N,         mods: Command,      action: SpawnNewInstance       }
+  - { key: Space,     mods: Alt,          chars: " "                     }
+  - { key: Back, mods: Super, chars: "\x15" } # delete word/line
+  - { key: Left,     mods: Alt,     chars: "\x1bb"                       } # one word left
+  - { key: Right,    mods: Alt,     chars: "\x1bf"                       } # one word right
+  - { key: Left,     mods: Command, chars: "\x1bOH",   mode: AppCursor   } # Home
+  - { key: Right,    mods: Command, chars: "\x1bOF",   mode: AppCursor   } # End
