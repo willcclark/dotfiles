@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="typewritten/typewritten"
+ZSH_THEME=""
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -43,6 +43,7 @@ plugins=(
 	git
 	sudo
 	web-search
+	zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -55,6 +56,14 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='vim'
 fi
+
+export MANPAGER="vim -M +MANPAGER -"
+# Plugin options
+export ZSH_AUTOSUGGEST_USE_ASYNC="true"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244,underline"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244"
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+bindkey '^ ' autosuggest-accept
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh

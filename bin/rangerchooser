@@ -1,7 +1,0 @@
-#!/bin/sh
-# https://github.com/pauloue/dotfiles/blob/master/bin/rangerchooser
-IFS='
-'
-tmpfile=$(mktemp)
-ranger --choosefiles "$tmpfile"
-[ -s "$tmpfile" ] && rifle $(cat "$tmpfile")

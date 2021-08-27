@@ -1,3 +1,6 @@
 [submodule ".zsh_custom/typewritten"]
 	path = .zsh_custom/typewritten
 	url = https://github.com/reobin/typewritten.git
+[submodule ".zsh_custom/plugins/zsh-autosuggestions"]
+	path = .zsh_custom/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
