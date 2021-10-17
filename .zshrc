@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$(brew --prefix)/opt/python/libexec/bin:$HOME/bin:$HOME/.local/bin/:/Users/will/Library/Python/3.9/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME=""
+ZSH_THEME="typewritten/typewritten"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -46,6 +46,17 @@ plugins=(
 	zsh-autosuggestions
 )
 
+# Prompt config
+TYPEWRITTEN_RELATIVE_PATH="adaptive"
+TYPEWRITTEN_CURSOR="terminal"
+
+# Plugin options
+export ZSH_AUTOSUGGEST_USE_ASYNC="true"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244,underline"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244"
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+bindkey '^ ' autosuggest-accept
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -58,12 +69,6 @@ else
 fi
 
 export MANPAGER="vim -M +MANPAGER -"
-# Plugin options
-export ZSH_AUTOSUGGEST_USE_ASYNC="true"
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244,underline"
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=244"
-export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-bindkey '^ ' autosuggest-accept
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -73,3 +78,6 @@ bindkey '^ ' autosuggest-accept
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="open ~/.oh-my-zsh"
+export PATH="/usr/local/opt/qt@5/bin:$PATH"
+export PATH="/usr/local/opt/openssl@3/bin:$PATH"
+export CPPFLAGS="-I/usr/local/opt/openssl@3/include"

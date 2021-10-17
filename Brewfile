@@ -2,13 +2,22 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/command-not-found"
 tap "homebrew/core"
+brew "ffmpeg"
+brew "gnupg"
+brew "mas"
 brew "neofetch"
+brew "youtube-dl"
+cask "android-file-transfer"
 cask "balenaetcher"
-cask "browserosaurus"
+cask "firefox"
+cask "github"
 cask "google-chrome"
 cask "intel-power-gadget"
-mas "AdGuard for Safari", id: 1440147259
-mas "Bitwarden", id: 1352778147
-mas "Flow", id: 1423210932
-mas "Save to Pocket", id: 1477385213
+cask "iterm2"
+cask "musicbrainz-picard"
+cask "rectangle"
+cask "spotify"
+cask "tor-browser"
+cask "visual-studio-code"
+cask "zoom"
 mas "Simplenote", id: 692867256
