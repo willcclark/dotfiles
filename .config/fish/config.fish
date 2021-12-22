@@ -5,9 +5,9 @@ end
 set fish_greeting
 
 if [ $ANDROID_DATA ]
-    set -gx NOTES_HOME ~/notes
+    set -gx NOTESDIR ~/storage/shared/notes
 else
-    set -gx NOTES_HOME ~/dox/notes/
+    set -gx NOTESDIR ~/dox/notes/
 end
 
 set -gx fish_color_normal normal
